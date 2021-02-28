@@ -6,12 +6,6 @@ int arr[1000002][1000002];
 
 void solve(int n, vector<vector<string>> ing)
 {
-    for (int i = 0; i < 1000002; i++)
-    {
-        for (int j = 0; j < 1000002; j++)
-        {
-        }
-    }
 }
 
 int main()
