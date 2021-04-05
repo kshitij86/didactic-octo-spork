@@ -3,6 +3,8 @@
         "fstream": "cpp",
         "ostream": "cpp",
         "vector": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "span": "cpp",
+        "type_traits": "cpp"
     }
 }
