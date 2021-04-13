@@ -53,8 +53,9 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-ll n, k;
-char s;
+ll n, k, i;
+string s;
+
 int main()
 {
     fast_cin();
@@ -62,29 +63,18 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll str_cnt = 0;
-        bool f = false;
-        cin >> n >> k;
-        while (n--)
-        {
-            cin >> s;
-            if (s == '*')
-            {
-                str_cnt++;
-            }
-            else
-            {
-                str_cnt = 0;
-            }
+        cin >> n >> k >> s;
+        ll cnt = 0, mv = 0;
+        forn(i, n){
+            if(s[i] == '*'){
+                cnt++;
+                if(cnt >= mv){
+                    mv = cnt;
+                }
+            } else cnt = 0;
 
-            if (str_cnt == k)
-            {
-                f = true;
-                break;
-            }
         }
-
-        if (f)
+        if (mv >= k)
         {
             cout << "yes" << endl;
         }

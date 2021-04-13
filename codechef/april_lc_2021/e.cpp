@@ -54,39 +54,54 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-ll n, m, k, i, j, ctr = 0, su = 0;
-ll mat[1000][1000]; 
-
-void solve()
-{
-	for(int i=2; i<max(n,m); i++){
-		for(int e=0; e<i; e++){
-			for(int f=0; f<i; f++){
-				su += mat[e][f];
-				cout << mat[e][f] << " "; 
-			}
-			cout << "----------------\n";
-		}
-		if((su/(i*i)) >= k)
-			ctr++;	
-	}	
-
-	cout << ctr << endl;
-}
 int main()
 {
     fast_cin();
-    ll t;
+    ll t, n, m, k;
     cin >> t;
     while(t--){
 		cin >> n >> m >> k; 
-		forn(i, n)
-			forn(j, m){
-				cin >> mat[i][j];
-				if(mat[i][j] >=k) 
-					ctr++; // sinlge element matrices				
+		ll mat[n][m];
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				cin >> mat[i][j];				
 			}
-		solve();
+		}
+
+
+		ll ran[n+1][m+1] = {};
+		for(int i=0; i<=n; i++){
+			for(int j=0; j<=m; j++){
+				ran[i][j] = ran[i-1][j] + ran[i][j-1] + mat[i-1][j-1] - ran[i-1][j-1];
+			}
+		}
+
+		ll ctr = 0;
+		for(int r1=1; r1<=n; r1++){
+			for(int c1=1; c1<=m; c1++){
+				ll r2=r1, c2=c1;
+				while(r2<=n && c2<=m){
+					ll f = ran[r2][c2] - ran[r1-1][c2] - ran[r2][c1-1] + ran[r1-1][c1-1];
+					ll mkc = (r2-r1+1)*(r2-r1+1);
+					ctr += (f >= k*mkc);
+					r2++; 
+					c2++;
+				}
+			}
+		}
+
+		cout << ctr << endl; 
 	}
 	return 0;
 }
+
+
+/*
+	2 	2 	3
+	3 	4 	5
+	4 	5 	5
+
+	2 	4 	7
+	5 	11 	19
+	9 	20 	33
+*/
