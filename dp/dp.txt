@@ -1,0 +1,23 @@
+1. choice always given
+2. overlapping subproblem
+
+one function call -> never DP applied
+always >= 2 function calls, then DP applied
+optimal, min, max, largest asked (max profit etc.)
+
+parent of DP -> recursion
+first recursive solution, then memoize, then top-down
+
+types of problems -
+1. 0/1 knapsack, subset sum, equal sum partition, count of subset sum 
+2. unbounded knapsack
+3. fibonacci
+4. LCS
+5. LIS
+6. Kadane's algo
+7. MCM
+8. DP on trees
+9. DP on Grid (robot only move down or right, how many ways?)
+10. others
+
+  ff
