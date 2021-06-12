@@ -2,28 +2,25 @@
 
 #include <iostream>
 #include <vector>
-#include <set>
+#include <unordered_set>
 #include <map>
 using namespace std; 
 
+// O(n) time solution
 
-bool isZeroSumSubArray(vector<int> &A){
-	/* All subset checking solution */
-	int m, n, k, size = A.size(); 
-	for(m=1; m<size; m++){
-		for(n=0; n<size; n++){
-			int su = 0, mcpy = m;
-			k = n;
-			while(mcpy--){
-				cout << A[k] << " ";
-				su += A[k];
-			}
-			cout << endl; 
-			if(!su)
-				return true; 
+int fastZeroSubArray(vector<int> &A){
+	int size = A.size(), sum = 0; 
+	unordered_set<int> hash_store; 
+
+	hash_store.insert(0); 
+	for(int i=0; i<size; i++){
+		sum += A[i]; 
+		if(hash_store.find(sum) != hash_store.end()){
+			return 1; 
 		}
+		hash_store.insert(sum); 
 	}
-	return false; 
+	return 0; 
 }
 
 int main(){
@@ -36,5 +33,5 @@ int main(){
 		A.push_back(x); 
 	}
 
-	cout << isZeroSumSubArray(A) << endl; 
+	cout << fastZeroSubArray(A) << endl; 
 }
